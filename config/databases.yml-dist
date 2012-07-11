@@ -4,4 +4,4 @@ all:
     param:
       dsn: 'mysql:host=localhost;dbname=blgenerator'
       username: root
-      password: admin
+      password: 
