@@ -56,6 +56,27 @@
         </td>
       </tr>
       <tr>
+        <th><?php echo $form['ftpPath']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['ftpPath']->renderError() ?>
+          <?php echo $form['ftpPath'] ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['releaseUrl']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['releaseUrl']->renderError() ?>
+          <?php echo $form['releaseUrl'] ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['testUrl']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['testUrl']->renderError() ?>
+          <?php echo $form['testUrl'] ?>
+        </td>
+      </tr>
+      <tr>
         <th><?php echo $form['sourceFolderCompressionType']->renderLabel() ?></th>
         <td>
           <?php echo $form['sourceFolderCompressionType']->renderError() ?>

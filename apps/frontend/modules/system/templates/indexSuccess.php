@@ -9,6 +9,9 @@
       <th>Jira component</th>
       <th>Dependencies</th>
       <th>Svn copy folder</th>
+      <th>Ftp path</th>
+      <th>Release url</th>
+      <th>Test url</th>
       <th>Source folder compression type</th>
       <th>Created at</th>
       <th>Updated at</th>
@@ -25,6 +28,9 @@
       <td><?php echo $system->getJiraComponent() ?></td>
       <td><?php echo $system->getDependencies() ?></td>
       <td><?php echo $system->getSvnCopyFolder() ?></td>
+      <td><?php echo $system->getFtpPath() ?></td>
+      <td><?php echo $system->getReleaseUrl() ?></td>
+      <td><?php echo $system->getTestUrl() ?></td>
       <td><?php echo $system->getSourceFolderCompressionType() ?></td>
       <td><?php echo $system->getCreatedAt() ?></td>
       <td><?php echo $system->getUpdatedAt() ?></td>
