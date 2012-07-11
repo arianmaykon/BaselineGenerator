@@ -1,1 +1,37 @@
 Just a simple app to help configuration management tasks, for now, baseline generation, with test and release baselines already been generated. Sorry for the stupid name :)
+
+
+BaselineGenerator
+=============
+
+(Work in progress...)
+
+How to use
+
+Clone the repo to your apache "htdocs" folder running the above commands in the terminal:
+cd /var/www/
+git clone https://github.com/arianmaykon/BaselineGenerator.git
+After the clone operation ends, execute:
+cd BaselineGenerator
+./symfony project:permissions
+cp config/databases.yml-dist config/databases.yml
+cp apps/frontend/config/app.yml-dist apps/frontend/config/app.yml
+Edit the config/databases.yml file to configure your database connection:
+Opcional - You can set the database connection with the command (change the mysql to another DBMS if you desire): ./symfony configure:database "mysql:host=YOURSERVER;dbname=blgenerator" dbuser dbpassword
+To create the database schema and tables, run: ./symfony doctrine:build --all --and-load --no-confirmation
+Now you can access the app and enter with your data, see some explanation of the more relevanta data:
+Parameter:
+JiraBaseUrl: your's company Jira's root URL
+SvnBaseUrl: your's company SVN's root URL
+FtpHost: your's company FTP's URL
+System:
+JiraComponent: Jira's component name for the software you want to generate baselines, will be used for some convensions too, as SVN default path to copy and tag use (yeah, i know, crappy but will be improved)
+SourceFolderCompressionType: the compression type used to the source files, tar.gz or zip
+Baseline:
+System (FK System): the system/software for wich you want to generate a baseline, some info from it will be used in the generation, as the Jira component and other data
+Name: the baseline's name, and also the Jira version wich will be created on the generation process
+Type: baseline's classification, the generation process it's different between them
+Issues: Jira's issues keys, wich will be searched to fetch their types and summaries. This info is used in the suggested baselines description and used in the e-mails, in a near future will be present in the release notes as well
+For now only
+?
+?
