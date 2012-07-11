@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/30723/plugins/sfDoctrineGuardPlugin/trunk/lib/routing
+END
+sfGuardRouting.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/30723/plugins/sfDoctrineGuardPlugin/trunk/lib/routing/sfGuardRouting.class.php
+END

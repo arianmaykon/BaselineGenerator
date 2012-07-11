@@ -1,0 +1,170 @@
+vjGuardADPlugin
+=================
+
+The `vjGuardADPlugin` packages authentification using Active Directory, proposes management of users (only from AD), groups (create on AD and on database) and permissions and Single Sign On (SSO) with NTLM or Kerberos protocol if activated.
+
+It replaces the `vjAuthPlugin` which won't be supported soon !
+
+Installation
+------------
+
+  * Add pear channel
+
+        $ pear channel-discover plugins.symfony-project.org
+        $ pear channel-discover pear.symfony-project.com
+
+  * Install the plugin and the dependency
+
+        $ symfony plugin:install sfFormExtraPlugin
+        $ symfony plugin:install vjGuardADPlugin
+
+  * Publish the assets
+
+        $ symfony plugin:publish-assets
+
+  * Clear the cache
+
+        $ symfony cc
+
+Secure your application
+-------------
+
+To secure a symfony application:
+
+  * Enable the module vjGuardADAuth in settings.yml
+
+         all:
+           .settings:
+             enabled_modules: [..., vjGuardADAuth]
+             i18n:            true
+             default_helper:  [..., I18N]
+
+  * Change the default login modules in settings.yml
+
+        .actions:
+          login_module:           vjGuardADAuth
+          login_action:           login
+
+          secure_module:          vjGuardADAuth
+          secure_action:          secure
+
+  * Secure some modules or your entire application in security.yml
+
+          default:
+            is_secure: true
+
+  * Add some parameters in app.yml
+
+          all:          
+            ad:
+              options:   # theses options are usefull for the adldap class, the documentation is online
+                account_suffix:            '@mysite.fr'
+                base_dn:                   'DC=mysite,DC=fr'
+                domain_controllers:        [ "myDC1.mysite.fr", "myDC2.mysite.fr" ]
+                ad_username:               'username_administrator_active_directory'
+                ad_password:               'password_administrator_active_directory'
+                recursive_groups:          false
+              # if ntlm is activated, autologon with the windows username (there are some issues with the NTLM protocol, they are documented farther in this readme)
+              ntlm_active:                 true
+              # if kerberos is activated, autologon with the windows username
+              kerberos_active:             true
+              # the name of the group authorized to acces to application
+              group_authorize:             GROUP
+              # the master OU in your AD where will be create the groups
+              master_ou:                   'OU=ENFANT2,OU=ENFANT1,OU=PARENT'
+              # the value is added after the name of the group
+              # ie : I add the group 'administrator', in AD, the group created will be 'administrator_SECURE_GROUP' but still appear as 'administrator' in your web interface
+              # if useless, set false
+              secure_group_name:           _SECURE_GROUP
+              # an array of group not allowed to be created
+              # if useless, set false
+              group_not_allowed:           [ group1, group2 ]
+
+Identity management from AD
+-------------
+
+To secure a symfony application:
+
+  * Enable the module vjGuardADUser, vjGuardADGroup, vjGuardADPermission in settings.yml
+
+         all:
+           .settings:
+             enabled_modules: [..., vjGuardADUser, vjGuardADGroup, vjGuardADPermission]
+
+  * Build forms, filters, model and database
+
+        $ symfony doctrine:build --all --and-load="plugins/vjGuardADPlugin/data/fixtures/"
+
+  * Clear the cache
+
+        $ symfony cc
+
+  * Update the file apps/your_app/lib/myUser.class.php
+
+        class myUser extends vjGuardADSecurityUser
+        {
+        }
+
+  * Download jQuery (http://jquery.com/) in web/js/ and add in apps/your_app/config/view.yml
+
+        javascripts:    [jquery-1.3.2.min.js]
+
+  * A "local" super admin is created with the plugin (this user will be delete when another user will have admin rights (task set-super-admin))
+
+        Identifiant (login)    : admin
+        Mot de passe (password): admin
+
+Tasks
+-----
+
+I had a task to set someone super administrator. Before this, you need to connect to application with the "local" super admin.
+
+Now, go to vjGuardADUser module and add a new user (your future super admin) by tapping his name (not username).
+
+Autocompletion will do the rest. Now you can set him super admin with the task :
+
+  * set-super-admin
+
+      $ symfony vjGuardAD:set-super-admin yourusername
+
+For information, the 'local' super admin will be delete when you'll use this task.
+  
+Override admin generator's datas
+-----
+
+This plugin has some french datas. I don't have internationalized the plugin. I hope I'll have time to :)
+
+  * Override the title of the list of vjGuardADUser (ie)
+
+          generator:
+            param:
+              config:
+                list:
+                  title:  "User's list"
+  
+NTLM Configuration
+-----
+
+The NTLM protocol talk some issues. It uses to make some modifications on each computer (for each user more precisely).
+
+  * For Microsoft Internet Explorer, you need to modify 3 keys on the windows registry (ie for the Intranet domain : www.yourDomain.com)
+
+          [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]
+          "DisableNTLMPreAuth"=dword:00000001
+          "EnableNegotiate"=dword:00000000
+          [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\yourDomain.com]
+          "*"=dword:00000001
+
+  * For Mozilla Firefox, you need to modify the configuration of the browser (type about:config on the url)
+
+          search ntlm
+          network.automatic-ntlm-auth.allow-proxies   true
+          network.automatic-ntlm-auth.trusted-uris    yourDomain.com
+          network.ntlm.send-lm-response               true
+
+Theses fixs work on IE6, IE7, IE8 and FF3.5 but I think they work too on FF2 and FF3.
+
+TODO
+-----
+  
+  * any idea, advice, issue, other ? please email me :)

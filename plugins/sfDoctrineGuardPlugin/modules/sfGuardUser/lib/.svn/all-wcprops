@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/24574/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardUser/lib
+END
+sfGuardUserGeneratorConfiguration.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/23319/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardUser/lib/sfGuardUserGeneratorConfiguration.class.php
+END
+sfGuardUserGeneratorHelper.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/23319/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardUser/lib/sfGuardUserGeneratorHelper.class.php
+END
+BasesfGuardUserActions.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/24574/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardUser/lib/BasesfGuardUserActions.class.php
+END

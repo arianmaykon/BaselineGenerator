@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/32861/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/templates
+END
+changeSuccess.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/32861/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/templates/changeSuccess.php
+END
+_send_request.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/31283/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/templates/_send_request.php
+END
+indexSuccess.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/32861/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/templates/indexSuccess.php
+END
+_new_password.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/31283/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/templates/_new_password.php
+END

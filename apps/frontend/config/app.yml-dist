@@ -1,0 +1,40 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+#  sf_guard_plugin:
+#    check_password_callable: [MyLDAPClass, checkPassword]
+
+  # Used with adLDAP, to be refactored/removed
+#  ldap:
+    # The account suffix for your domain, can be set when the class is invoked
+#    account_suffix: ''
+    # The base dn for your domain
+#    base_dn: ''
+    # Array of domain controllers. Specifiy multiple controllers if you would like the class to balance the LDAP queries amongst multiple servers
+#    domain_controllers: ['']
+
+  ad:
+    options:   # theses options are usefull for the adldap class, the documentation is online
+      account_suffix:            ''
+      base_dn:                   ''
+      domain_controllers:        [ '' ]
+#      ad_username:               'username_administrator_active_directory'
+#      ad_password:               'password_administrator_active_directory'
+      recursive_groups:          false
+    # if ntlm is activated, autologon with the windows username (there are some issues with the NTLM protocol, they are documented farther in this readme)
+    ntlm_active:                 true
+    # if kerberos is activated, autologon with the windows username
+    kerberos_active:             true
+    # the name of the group authorized to acces to application
+    group_authorize:             GROUP
+    # the master OU in your AD where will be create the groups
+#    master_ou:                   'OU=ENFANT2,OU=ENFANT1,OU=PARENT'
+    # the value is added after the name of the group
+    # ie : I add the group 'administrator', in AD, the group created will be 'administrator_SECURE_GROUP' but still appear as 'administrator' in your web interface
+    # if useless, set false
+#    secure_group_name:           _SECURE_GROUP
+    # an array of group not allowed to be created
+    # if useless, set false
+#    group_not_allowed:           [ group1, group2 ]

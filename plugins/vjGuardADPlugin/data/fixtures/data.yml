@@ -1,0 +1,15 @@
+vjGuardADPermission:
+  vjGuardADPermission_1:
+    name: app-admin
+    description: 'Droits généraux + gestion des utilisateurs'
+  vjGuardADPermission_2:
+    name: app-reader
+    description: 'Droit de lecture'
+  vjGuardADPermission_3:
+    name: app-editor
+    description: 'Droit d''écriture'
+vjGuardADUser:
+  vjGuardADUser_1:
+    guid: admin
+    username: admin
+    is_super_admin: 1

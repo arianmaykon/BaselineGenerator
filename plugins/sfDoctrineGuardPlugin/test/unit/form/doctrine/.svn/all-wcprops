@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/test/unit/form/doctrine
+END
+PluginsfGuardPermissionFormTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/test/unit/form/doctrine/PluginsfGuardPermissionFormTest.php
+END
+PluginsfGuardGroupFormTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/test/unit/form/doctrine/PluginsfGuardGroupFormTest.php
+END
+PluginsfGuardUserFormTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/23536/plugins/sfDoctrineGuardPlugin/trunk/test/unit/form/doctrine/PluginsfGuardUserFormTest.php
+END

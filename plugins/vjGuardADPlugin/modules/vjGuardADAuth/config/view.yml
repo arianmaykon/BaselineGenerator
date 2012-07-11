@@ -1,0 +1,6 @@
+default:
+  metas:
+    title:        Outil Connexion
+    description:  Connexion Outil
+
+  stylesheets:    [/sfDoctrinePlugin/css/global.css, /sfDoctrinePlugin/css/default.css, /vjGuardADPlugin/css/form_login.css]

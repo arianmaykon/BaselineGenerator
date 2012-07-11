@@ -1,0 +1,31 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           vjGuardADUser
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          vjGuardADUser
+    with_doctrine_route:   1
+
+    config:
+      actions: ~
+      fields:
+        Name:             { label: "Nom" }
+        guid:             { label: "Nom" }
+        groups_list:      { label: "Liste des groupes" }
+        permissions_list: { label: "Liste des permissions" }
+      list:
+        title:            "Liste des utilisateurs"
+        display:          [Name]
+        max_per_page:     5
+      filter:
+        class:            false
+      form:               ~
+      edit:
+        title:            "Edition de l'utilisateur <em>%%Name%%</em>"
+        display:          [groups_list]
+      new:
+        title:            "Ajout d'un utilisateur"

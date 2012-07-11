@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/32864/plugins/sfDoctrineGuardPlugin/trunk/lib/form/doctrine/base
+END
+BasesfGuardRegisterForm.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/form/doctrine/base/BasesfGuardRegisterForm.class.php
+END
+BasesfGuardChangeUserPasswordForm.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/form/doctrine/base/BasesfGuardChangeUserPasswordForm.class.php
+END
+BasesfGuardUserAdminForm.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/form/doctrine/base/BasesfGuardUserAdminForm.class.php
+END

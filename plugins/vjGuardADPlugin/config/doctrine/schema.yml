@@ -1,0 +1,111 @@
+options:
+  collate: utf8_unicode_ci
+  charset: utf8
+vjGuardADGroup:
+  actAs: [Timestampable]
+  columns:
+    guid:
+      type: string(32)
+      unique: true
+    name:
+      type: string(255)
+      notnull: true
+      unique: true
+    description:
+      type: string(1000)
+    is_activated:
+      type: boolean
+  relations:
+    users:
+      class: vjGuardADUser
+      local: group_id
+      foreign: user_id
+      refClass: vjGuardADUserGroup
+      foreignAlias: Groups
+    permissions:
+      class: vjGuardADPermission
+      local: group_id
+      foreign: permission_id
+      refClass: vjGuardADGroupPermission
+      foreignAlias: Groups
+vjGuardADPermission:
+  actAs: [Timestampable]
+  columns:
+    name:
+      type: string(255)
+      notnull: true
+    description:
+      type: string(1000)
+vjGuardADUser:
+  actAs: [Timestampable]
+  columns:
+    guid:
+      type: string(32)
+      notnull: true
+      unique: true
+    username:
+      type: string(255)
+    is_super_admin:
+      type: boolean
+      default: 0
+  relations:
+    groups:
+      class: vjGuardADGroup
+      local: user_id
+      foreign: group_id
+      refClass: vjGuardADUserGroup
+      foreignAlias: Users
+    permissions:
+      class: vjGuardADPermission
+      local: user_id
+      foreign: permission_id
+      refClass: vjGuardADUserPermission
+      foreignAlias: Users
+vjGuardADGroupPermission:
+  actAs: [Timestampable]
+  columns:
+    group_id:
+      type: integer
+      primary: true
+    permission_id:
+      type: integer
+      primary: true
+  relations:
+    vjGuardADGroup:
+      local: group_id
+      onDelete: CASCADE
+    vjGuardADPermission:
+      local: permission_id
+      onDelete: CASCADE
+vjGuardADUserPermission:
+  actAs: [Timestampable]
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    permission_id:
+      type: integer
+      primary: true
+  relations:
+    vjGuardADUser:
+      local: user_id
+      onDelete: CASCADE
+    vjGuardADPermission:
+      local: permission_id
+      onDelete: CASCADE
+vjGuardADUserGroup:
+  actAs: [Timestampable]
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    group_id:
+      type: integer
+      primary: true
+  relations:
+    vjGuardADUser:
+      local: user_id
+      onDelete: CASCADE
+    vjGuardADGroup:
+      local: group_id
+      onDelete: CASCADE

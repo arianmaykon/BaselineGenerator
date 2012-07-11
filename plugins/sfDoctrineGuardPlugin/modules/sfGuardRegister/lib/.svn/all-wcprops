@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/32976/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardRegister/lib
+END
+BasesfGuardRegisterActions.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/32976/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardRegister/lib/BasesfGuardRegisterActions.class.php
+END
+BasesfGuardRegisterComponents.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/32976/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardRegister/lib/BasesfGuardRegisterComponents.class.php
+END

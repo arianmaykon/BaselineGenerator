@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" datatype="plaintext">
+    <header />
+    <body>
+      <!-- vjGuardADAuth Module -->
+      <trans-unit>
+        <source>Loading. Please Wait.</source>
+        <target>Chargement en cours. Merci de patienter.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Access granted!</source>
+        <target>Connexion en cours.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Incorrect login or password.</source>
+        <target>Identifiant et/ou Mot de passe incorrect(s).</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Access denied!</source>
+        <target>Votre compte ne dispose pas des autorisations suffisantes pour se connecter.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Disconnected.</source>
+        <target>Vous venez de vous déconnecter.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>You don't have the required permission to access this page.</source>
+        <target>Votre compte ne dispose pas des autorisations suffisantes pour accéder à cette page.</target>
+      </trans-unit>
+
+      <!-- vjAuthLogin Form -->
+      <trans-unit>
+        <source>Required.</source>
+        <target>Ce champ est obligatoire.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invalid.</source>
+        <target>Ce champ n'est pas rempli correctement.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Login</source>
+        <target>Identifiant</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Authentication</source>
+        <target>Authentification</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Connect</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Automatic connection</source>
+        <target>Me connecter automatiquement</target>
+      </trans-unit>
+
+      <!-- vjGuardADGroup Module -->
+      <trans-unit>
+        <source>`%value%` group already exist. Please choose another name.</source>
+        <target>Le groupe `%value%` existe déjà. Choisissez un nom différent.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>`%value%` group can't be create. Please choose another name.</source>
+        <target>Vous ne pouvez pas créer le groupe `%value%`. Choisissez un nom différent.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Group activated.</source>
+        <target>Le groupe a été activé.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Group not activated.</source>
+        <target>Le groupe n'a pas été activé.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Group deactivated.</source>
+        <target>Le groupe a été désactivé.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Group not deactivated.</source>
+        <target>Le groupe n'a pas été désactivé.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

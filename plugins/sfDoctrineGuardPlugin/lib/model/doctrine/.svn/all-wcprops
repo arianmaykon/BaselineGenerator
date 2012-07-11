@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/31278/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine
+END
+PluginsfGuardUserGroupTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUserGroupTable.class.php
+END
+PluginsfGuardGroupTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardGroupTable.class.php
+END
+PluginsfGuardGroupPermission.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardGroupPermission.class.php
+END
+PluginsfGuardRememberKey.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardRememberKey.class.php
+END
+PluginsfGuardGroupPermissionTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardGroupPermissionTable.class.php
+END
+PluginsfGuardUser.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/30726/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUser.class.php
+END
+PluginsfGuardRememberKeyTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardRememberKeyTable.class.php
+END
+PluginsfGuardForgotPassword.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardForgotPassword.class.php
+END
+PluginsfGuardUserTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUserTable.class.php
+END
+PluginsfGuardUserPermission.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUserPermission.class.php
+END
+PluginsfGuardPermission.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardPermission.class.php
+END
+PluginsfGuardUserGroup.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUserGroup.class.php
+END
+PluginsfGuardForgotPasswordTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/31278/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardForgotPasswordTable.class.php
+END
+PluginsfGuardGroup.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardGroup.class.php
+END
+PluginsfGuardUserPermissionTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardUserPermissionTable.class.php
+END
+PluginsfGuardPermissionTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/23793/plugins/sfDoctrineGuardPlugin/trunk/lib/model/doctrine/PluginsfGuardPermissionTable.class.php
+END

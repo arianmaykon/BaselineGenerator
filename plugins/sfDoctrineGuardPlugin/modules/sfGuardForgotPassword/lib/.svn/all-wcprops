@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/32976/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/lib
+END
+BasesfGuardForgotPasswordActions.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/!svn/ver/32976/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardForgotPassword/lib/BasesfGuardForgotPasswordActions.class.php
+END

@@ -1,0 +1,93 @@
+Parameter:
+  options:
+    symfony:
+      filter: false
+  actAs:
+    Timestampable: ~
+    fzBlameable: ~
+  columns:
+    jiraBaseUrl:
+      type: string(255)
+      notnull: true
+    svnBaseUrl:
+      type: string(255)
+      notnull: true
+    ftpHost:
+      type: string(255)
+    ftpUser:
+      type: string(255)
+    ftpPassword:
+      type: string(255)
+    ftpPort:
+      type: integer(4)
+    testBaselineMailBody:
+      type: string
+    releaseBaselineMailBody:
+      type: string
+    #TODO: Check if is possible to use only a body for this kind or one per system
+    # (Corpo do e-mail de disponibilização de demandas)
+    availabilityMailBody:
+      type: string
+
+System:
+  options:
+    symfony:
+      filter: false
+  actAs:
+    Timestampable: ~
+    fzBlameable: ~
+  columns:
+    name:
+      type: string(255)
+      notnull: true
+    # (Sigla)
+    acronym:
+      type: string(10)
+    # Jira's component name for this system
+    jiraComponent:
+      type: string(30)
+      notnull: true
+      unique: true
+    # SVN paths comma separated from the dependencies who should be versionated when generatng the SVN tag (eg. shared, commons)
+    dependencies:
+      type: string(255)
+    # Directory used for copy when generating the SVN tag, sometimes this
+    # differ from the Jira component name (eg. component: ciaspnet, SVN folder: dotnet/PrintControl/)
+    svnCopyFolder:
+      type: string(255)
+    ftpPath:
+      type: string(255)
+      notnull: true
+      default: '/'
+    releaseUrl:
+      type: string(255)
+      notnull: true
+    testUrl:
+      type: string(255)
+      notnull: true
+    # How the source folder will be compressed when generating a release baseline
+    sourceFolderCompressionType:
+      type: enum
+      values: [zip, tar.gz]
+
+Baseline:
+  options:
+    symfony:
+      filter: false
+  actAs:
+    Timestampable: ~
+    fzBlameable: ~
+  columns:
+    fk_system:    { type: integer, notnull: true }
+    name:         { type: string(255), notnull: true }
+    type:         { type: enum, values: [Teste, Release] }
+    # Release only
+    publishToFTP: { type: boolean, notnull: true, default: false }
+    sendMail:     { type: boolean, notnull: true, default: false }
+    # Release only
+    sendAvailabilityMail: { type: boolean, notnull: true, default: false }
+    issues:       { type: string(500) }
+    generatedAt:  { type: date }
+  relations:
+    System:
+      local: fk_system

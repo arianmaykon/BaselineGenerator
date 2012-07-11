@@ -1,0 +1,46 @@
+10
+
+dir
+33482
+http://svn.symfony-project.com/plugins/sfDoctrineGuardPlugin/trunk/modules
+http://svn.symfony-project.com
+
+
+
+2011-09-01T16:01:23.446811Z
+32976
+gimler
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ee427ae8-e902-0410-961c-c3ed070cd9f9
+
+sfGuardAuth
+dir
+
+sfGuardForgotPassword
+dir
+
+sfGuardRegister
+dir
+
+sfGuardPermission
+dir
+
+sfGuardGroup
+dir
+
+sfGuardUser
+dir
+

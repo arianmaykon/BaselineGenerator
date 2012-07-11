@@ -1,0 +1,2 @@
+ntlm:
+  is_secure:  false

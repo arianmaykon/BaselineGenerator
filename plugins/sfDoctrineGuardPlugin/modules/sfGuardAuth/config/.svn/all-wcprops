@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22089/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth/config
+END
+security.yml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/22089/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth/config/security.yml
+END

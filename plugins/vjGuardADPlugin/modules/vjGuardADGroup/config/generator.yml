@@ -1,0 +1,38 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           vjGuardADGroup
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          vjGuardADGroup
+    with_doctrine_route:   1
+
+    config:
+      actions: ~
+      fields:
+        name:             { label: "Nom" }
+        is_activated:     { label: "Etat" }
+        users_list:       { label: "Liste des utilisateurs" }
+        permissions_list: { label: "Liste des permissions" }
+      list:
+        title:            "Liste des groupes"
+        display:          [ScreenName, description, is_activated]
+        max_per_page:     5
+        object_actions:
+          _edit:          ~
+          activate:       { label: "Activer", action: activate }
+          desactivate:    { label: "Désactiver", action: desactivate }
+        batch_actions:    {}
+      filter:
+        class:            false
+      form:               ~
+      edit:
+        title:            "Edition du groupe <em>%%ScreenName%%</em>"
+        actions:
+          _list:          ~
+          _save:          ~
+      new:
+        title:            "Ajout d'un groupe"

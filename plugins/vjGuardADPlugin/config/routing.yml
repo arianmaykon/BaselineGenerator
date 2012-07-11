@@ -1,0 +1,42 @@
+vjGuardADUserAjax:
+  url: /vjGuardADUser/ajax
+  param: { module: vjGuardADUser, action: ajax }
+
+vjGuardADPermission:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                vjGuardADPermission
+    module:               vjGuardADPermission
+    prefix_path:          vjGuardADPermission
+    column:               id
+    with_wildcard_routes: true
+
+vjGuardADGroup:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                vjGuardADGroup
+    module:               vjGuardADGroup
+    prefix_path:          vjGuardADGroup
+    column:               id
+    with_wildcard_routes: true
+
+vjGuardADUser:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                vjGuardADUser
+    module:               vjGuardADUser
+    prefix_path:          vjGuardADUser
+    column:               id
+    with_wildcard_routes: true
+
+vjGuardADAuthLogout:
+  url:  /logout
+  param: { module: vjGuardADAuth, action: logout }
+
+vjGuardADAuthLoginNtlm:
+  url:  /ntlm
+  param:  { module: vjGuardADAuth, action: ntlm }
+
+vjGuardADAuthLogin:
+  url:  /login
+  param: { module: vjGuardADAuth, action: login }

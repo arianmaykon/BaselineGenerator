@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/data/fixtures
+END
+fixtures.yml.sample
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/data/fixtures/fixtures.yml.sample
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/32864/plugins/sfDoctrineGuardPlugin/trunk/lib/form/base
+END
+BasesfGuardRequestForgotPasswordForm.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/32864/plugins/sfDoctrineGuardPlugin/trunk/lib/form/base/BasesfGuardRequestForgotPasswordForm.class.php
+END
+BasesfGuardFormSignin.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/32864/plugins/sfDoctrineGuardPlugin/trunk/lib/form/base/BasesfGuardFormSignin.class.php
+END

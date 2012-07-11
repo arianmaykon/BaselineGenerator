@@ -1,0 +1,40 @@
+#Parameter:
+#  parameter01:
+#    jiraBaseUrl: ''
+#    svnBaseUrl: ''
+#    ftpHost: ''
+#    ftpHost: ''
+#    ftpUser: ''
+#    ftpPassword: ''
+#    ftpPort: 21
+#    testBaselineMailBody: ''
+#    releaseBaselineMailBody: ''
+#    availabilityMailBody: ''
+
+#System:
+#  sys01:
+#    name: ''
+#    acronym: ''
+#    jiraComponent: ''
+#    dependencies: ''
+#    svnCopyFolder: ''
+#    ftpPath: ''
+#    releaseUrl: ''
+#    testUrl: ''
+#    sourceFolderCompressionType: 'tar.gz' #or zip
+
+#Baseline:
+#  testBl:
+#    name: ''
+#    type: 'Teste'
+#    sendMail: true
+#    issues: 'XPTO-101, XPTO-256'
+#    System: sys01
+#  releaseBl:
+#    name: ''
+#    type: 'Release'
+#    publishToFTP: true
+#    sendMail: true
+#    sendAvailabilityMail: true
+#    issues: 'XPTO-101, XPTO-256'
+#    System: sys01

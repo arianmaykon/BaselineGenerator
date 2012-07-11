@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/31850/plugins/sfDoctrineGuardPlugin/trunk/lib/validator
+END
+sfGuardValidatorUsernameOrEmail.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/31273/plugins/sfDoctrineGuardPlugin/trunk/lib/validator/sfGuardValidatorUsernameOrEmail.class.php
+END
+sfGuardValidatorUser.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/31850/plugins/sfDoctrineGuardPlugin/trunk/lib/validator/sfGuardValidatorUser.class.php
+END

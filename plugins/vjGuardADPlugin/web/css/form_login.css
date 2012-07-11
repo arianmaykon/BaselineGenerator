@@ -1,0 +1,42 @@
+div.login_title, table#login_form{
+  width:100%;
+}
+
+div#login, div.login_title{
+  text-align:center;
+}
+
+div.login_title, input#login_submit{
+  background-color:#3c833c;
+  color:#ffffff;
+  font-weight:bold;
+}
+
+#login_form td,#login_form th, input#login_submit{
+  border: none;
+}
+
+div#login{
+  width:300px;
+  margin:50px auto;
+  border:2px solid #3c833c;
+  background-color:#efefef;
+}
+
+div.login_title{
+  margin:0 0 10px 0;
+  padding:5px 0 5px 0;
+}
+
+#login_form li{
+  color: #ff0000;
+}
+
+#login_form input{
+  border:1px solid #3c833c;
+}
+
+input#login_submit{
+  font-size:small;
+  padding:2px;
+}

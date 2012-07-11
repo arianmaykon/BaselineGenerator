@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/30726/plugins/sfDoctrineGuardPlugin/trunk/test/unit/model/doctrine
+END
+PluginsfGuardUserTableTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/30726/plugins/sfDoctrineGuardPlugin/trunk/test/unit/model/doctrine/PluginsfGuardUserTableTest.php
+END
+PluginsfGuardUserTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/30726/plugins/sfDoctrineGuardPlugin/trunk/test/unit/model/doctrine/PluginsfGuardUserTest.php
+END

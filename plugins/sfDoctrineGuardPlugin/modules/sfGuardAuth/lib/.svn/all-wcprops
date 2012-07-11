@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/32963/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth/lib
+END
+BasesfGuardAuthActions.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/32963/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php
+END
+BasesfGuardAuthComponents.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/25546/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth/lib/BasesfGuardAuthComponents.class.php
+END

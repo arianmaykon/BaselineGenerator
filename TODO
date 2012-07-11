@@ -1,0 +1,42 @@
+- Refactor the code to fetch the Jira Projects, components per project and other stuff of the user upon login;
+
+
+
+--------------------------------------------------------------------------------
+Jira API from PHP
+http://www.lornajane.net/posts/2012/using-jiras-rest-api-to-create-a-dashboard
+http://codingx.blogspot.com.br/2011/04/play-with-jira-api-from-php.html			-- WORKS
+http://forrst.com/posts/How_to_automatically_create_an_issue_in_Jira_fro-4iU    -- Poggy
+
+http://www.php.net/manual/pt_BR/book.soap.php
+
+Jira Docs
+http://docs.atlassian.com/software/jira/docs/api/4.2/
+http://docs.atlassian.com/rpc-jira-plugin/4.4/com/atlassian/jira/rpc/soap/JiraSoapService.html#addVersion(java.lang.String, java.lang.String, com.atlassian.jira.rpc.soap.beans.RemoteVersion)
+http://docs.atlassian.com/rpc-jira-plugin/4.4/com/atlassian/jira/rpc/soap/beans/RemoteVersion.html
+
+JQL Reference
+https://confluence.atlassian.com/display/JIRA/Advanced+Searching
+https://confluence.atlassian.com/display/JIRACOM/Example+SQL+queries+for+JIRA
+--------------------------------------------------------------------------------
+http://docs.doctrine-project.org/projects/doctrine1/en/latest/en/index.html
+--------------------------------------------------------------------------------
+https://groups.google.com/forum/?fromgroups#!topic/symfony1/yv5J8M3Dp1U
+--------------------------------------------------------------------------------
+http://www.symfony-project.org/plugins/sfDoctrineGuardPlugin
+http://www.symfony-project.org/plugins/fzBlameablePlugin
+http://www.symfony-project.org/plugins/vjGuardADPlugin		- LDAP
+--------------------------------------------------------------------------------
+# MAIL TEMPLATE
+http://www.symfony-project.org/more-with-symfony/1_4/en/13-Leveraging-the-Power-of-the-Command-Line
+--------------------------------------------------------------------------------
+http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository
+--------------------------------------------------------------------------------
+PHP + SSH
+http://phpseclib.sourceforge.net/documentation/
+http://kevin.vanzonneveld.net/techblog/article/make_ssh_connections_with_php/
+--------------------------------------------------------------------------------
+SVN Problem
+http://www.yolinux.com/TUTORIALS/Subversion.html
+http://www.tigris.org/nonav/scdocs/ddUsingSVN_command-line.html.en
+--------------------------------------------------------------------------------

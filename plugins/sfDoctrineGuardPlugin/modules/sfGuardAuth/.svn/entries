@@ -1,0 +1,40 @@
+10
+
+dir
+33482
+http://svn.symfony-project.com/plugins/sfDoctrineGuardPlugin/trunk/modules/sfGuardAuth
+http://svn.symfony-project.com
+
+
+
+2011-08-28T07:56:54.625435Z
+32963
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ee427ae8-e902-0410-961c-c3ed070cd9f9
+
+config
+dir
+
+lib
+dir
+
+templates
+dir
+
+actions
+dir
+
