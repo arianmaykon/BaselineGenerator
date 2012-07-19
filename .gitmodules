@@ -1,0 +1,3 @@
+[submodule "plugins/sfDoctrineExtraPlugin"]
+	path = plugins/sfDoctrineExtraPlugin
+	url = https://github.com/JoshuaEstes/sfDoctrineExtraPlugin.git
