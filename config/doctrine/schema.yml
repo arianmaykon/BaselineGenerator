@@ -1,10 +1,12 @@
+actAs:
+  Timestampable: ~
+#    fzBlameable: ~
+#  Blameable: {blameVar:vjSecurityUser/user_id}
+
 Parameter:
-  options:
-    symfony:
-      filter: false
-  actAs:
-    Timestampable: ~
-    fzBlameable: ~
+#  options:
+#    symfony:
+#      filter: false
   columns:
     jiraBaseUrl:
       type: string(255)
@@ -30,12 +32,6 @@ Parameter:
       type: string
 
 System:
-  options:
-    symfony:
-      filter: false
-  actAs:
-    Timestampable: ~
-    fzBlameable: ~
   columns:
     name:
       type: string(255)
@@ -71,12 +67,6 @@ System:
       values: [zip, tar.gz]
 
 Baseline:
-  options:
-    symfony:
-      filter: false
-  actAs:
-    Timestampable: ~
-    fzBlameable: ~
   columns:
     fk_system:    { type: integer, notnull: true }
     name:         { type: string(255), notnull: true }
@@ -86,7 +76,9 @@ Baseline:
     sendMail:     { type: boolean, notnull: true, default: false }
     # Release only
     sendAvailabilityMail: { type: boolean, notnull: true, default: false }
+    # Issues for this baseline OR the fix version from which the issues will be collected
     issues:       { type: string(500) }
+    fixVersion:   { type: string(150) }
     generatedAt:  { type: date }
   relations:
     System:
