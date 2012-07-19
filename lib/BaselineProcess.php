@@ -37,7 +37,7 @@ class BaselineProcess {
         $jiraPassword = '';
 //TODO: Handle several project keys, if necessary. In some cases the same component (system) is developed/mantained across more than one Jira project (project renovation)
         $this->jiraClient = new JiraAPISoapClient(
-            $this->parameter->getJiraBaseUrl(), 'PCEM',
+            $this->parameter->getJiraBaseUrl(), 'JIRA_PROJECT_KEY',
             $networkUser, $jiraPassword);
 
     }
