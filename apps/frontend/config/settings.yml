@@ -34,15 +34,11 @@ all:
     # Enable the database manager
     use_database:           true
 
-    enabled_modules: [default, sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission, vjGuardADAuth]
+    enabled_modules: [default, vjGuardADAuth, vjGuardADUser, vjGuardADGroup, vjGuardADPermission]
 
-#    login_module: sfGuardAuth
-#    login_action: signin
     login_module: vjGuardADAuth
     login_action: login
 
-#    secure_module: sfGuardAuth
-#    secure_action: secure
     secure_module: vjGuardADAuth
     secure_action: secure
 
