@@ -7,6 +7,16 @@ class BaselineProcess {
      */
     private $baseline;
 
+    /**
+     *
+     */
+    private $parameter;
+
+    /**
+     * @var JiraAPISoapClient
+     */
+    private $jiraClient;
+
 
     /**
      * @param Baseline $baseline
@@ -16,6 +26,20 @@ class BaselineProcess {
             throw new Exception('Informe a baseline a ser gerada.');
         }
         $this->baseline = $baseline;
+
+        $this->parameter = ParameterTable::getInstance()->findAll()->getFirst();
+        if (!$this->parameter) {
+            throw new Exception('Parâmetros não encontrados.');
+            exit;
+        }
+
+        $networkUser  = '';
+        $jiraPassword = '';
+//TODO: Handle several project keys, if necessary. In some cases the same component (system) is developed/mantained across more than one Jira project (project renovation)
+        $this->jiraClient = new JiraAPISoapClient(
+            $this->parameter->getJiraBaseUrl(), 'PCEM',
+            $networkUser, $jiraPassword);
+
     }
 
     /**
@@ -48,16 +72,11 @@ class BaselineProcess {
         );
 
 //TODO: Get this authentication data from Parameter or other config
-        $networkUser = '';
-        $networkPassword = '';
-        $jiraPassword = '';
-        $svnPassword = '';
+        $networkUser  = '';
+        $svnPassword  = '';
 
-        if (
-            empty($networkUser) || empty($networkPassword)
-            || empty($jiraPassword) || empty($svnPassword)
-        ) {
-            throw new Exception('Users data not set.');
+        if (empty($networkUser) || empty($svnPassword)) {
+            throw new Exception('User data not set.');
         }
         ############################################################################
         $this->debug("################################################################################\n");
@@ -67,21 +86,20 @@ class BaselineProcess {
 
         $baselineTable = BaselineTable::getInstance();
         $baselineType = $this->baseline->getType();
-        $parameter = ParameterTable::getInstance()->findAll()->getFirst();
-
-        if (!$parameter) {
-            throw new Exception('Parâmetros não encontrados.');
-            exit;
-        }
 
         $this->log('Baseline e parâmetros OK.');
 
         ############################################################################
         $this->log('Obtendo a descrição da baseline.');
 
+#-------------------------------------------------------------------------------
+        $issuesData = $this->getIssuesData();
+#-------------------------------------------------------------------------------
+/*
         $issues = $this->getIssues($this->baseline);
 $this->debug(print_r($issues, true));
 
+//TODO: Handle several project keys, if necessary. In some cases the same component (system) is developed/mantained across more than one Jira project (project renovation)
         $jiraClient = new JiraAPISoapClient($parameter->getJiraBaseUrl(),
             'JIRA_PROJECT_KEY', $networkUser, $jiraPassword);
 
@@ -96,12 +114,13 @@ $this->debug(print_r($issuesObjects, true));
         $jiraVersionDescription = $baselineTable->getJiraVersionDescription(
             $this->baseline, $issuesObjects, $issuesTypes);
 $this->debug(print_r($jiraVersionDescription, true));
+*/
 
         ############################################################################
         $this->log('Criando a baseline (version) no Jira.');
 //TODO: Fix the problem to pass the date and how to set the version descriptions, this version API does not support it
 
-        $version = $jiraClient->createVersion($this->baseline->getName());
+        $version = $this->jiraClient->createVersion($this->baseline->getName());
         $this->debug(print_r($version, true));
 
         if ($version) {
@@ -113,14 +132,13 @@ $this->debug(print_r($jiraVersionDescription, true));
         ############################################################################
         $this->log('Criando a tag no SVN.');
 
-        $svnBaseUrl = $parameter->getSvnBaseUrl();
+        $svnBaseUrl = $this->parameter->getSvnBaseUrl();
 
         $component = $this->baseline->getSystem()->getJiraComponent();
         $systemAcronym = $this->baseline->getSystem()->getAcronym();
         $baselineName = $this->baseline->getName();
 
-        $copyFolderSVN = null;
-        $dbCopyFolderSVN = null;
+        $dbCopyFolderSVN = $this->baseline->getSystem()->getSvnCopyFolder();
 
 //TODO: Check if the component folder do exists
 //TODO: Move the base copy path to Parameter
@@ -140,7 +158,7 @@ $this->debug(print_r($jiraVersionDescription, true));
         $commands = array(
             "svn mkdir {$svnBaseUrl}tags/{$component}/{$baselineName} -m \"criacao da pasta da baseline\"{$svnCommandsSuffix}",
             "svn mkdir {$svnBaseUrl}tags/{$component}/{$baselineName}/codigo -m \"criacao da pasta da baseline\"{$svnCommandsSuffix}",
-            "svn copy  {$svnBaseUrl}trunk/implementacao/aplicacoes/{$component} {$svnBaseUrl}tags/{$component}/{$baselineName}/codigo/ -m \"inclusao de codigo fonte do sistema na baseline\"{$svnCommandsSuffix}"
+            "svn copy  {$svnBaseUrl}trunk/{$copyFolderSVN} {$svnBaseUrl}tags/{$component}/{$baselineName}/codigo/ -m \"inclusao de codigo fonte do sistema na baseline\"{$svnCommandsSuffix}"
         );
         $this->runCommand($commands);
 
@@ -172,14 +190,14 @@ $this->debug(print_r($jiraVersionDescription, true));
 
 //TODO: Make the paths and the docs per system dinamyc
             $commands = array(
-                "cp /var/www/baselinegenerator/web/uploads/{$ntrBaseTo} {$baselineName}/{$ntrFrom}",
-                "cp /var/www/baselinegenerator/web/uploads/{$rdmBaseTo} {$baselineName}/{$rdmFrom}",
+                "cp " . dirname(__FILE__) . "/../web/uploads/{$ntrBaseTo} {$baselineName}/{$ntrFrom}",
+                "cp " . dirname(__FILE__) . "/../web/uploads/{$rdmBaseTo} {$baselineName}/{$rdmFrom}",
                 "cd {$baselineName} && svn add {$ntrFrom} {$rdmFrom}",
                 "cd {$baselineName} && svn commit -m 'Release notes e RDM.'{$svnCommandsSuffix}"
             );
-            $this->runCommand($commands);
+#            $this->runCommand($commands);
 
-            $result[$baselineType]["Added NTR and RDM in the SVN tag"] = true;
+#            $result[$baselineType]["Added NTR and RDM in the SVN tag"] = true;
         }
 
         if ($this->baseline->isTestBaseline()) {
@@ -204,10 +222,24 @@ $this->debug(print_r($jiraVersionDescription, true));
 
         ############################################################################
         if ($this->baseline->isReleaseBaseline()) {
+            $sourceFolderToCompress = $component;
+
+            if ($dbCopyFolderSVN) {
+#                $sourceFolderToCompress = explode(DIRECTORY_SEPARATOR, $dbCopyFolderSVN);
+#                $sourceFolderToCompress = end(sourceFolderToCompress);
+
+                $temp = explode(DIRECTORY_SEPARATOR, $dbCopyFolderSVN);
+
+                $sourceFolderToCompress = trim(end($temp));
+                if (empty($sourceFolderToCompress)) {
+                    $sourceFolderToCompress = $temp[count($temp)-2];
+                }
+            }
+
             if ($this->baseline->getSystem()->getSourceFolderCompressionType() == System::COMPRESSION_TYPE_TARGZ) {
-                $this->runCommand("cd {$baselineName}_ftp/codigo && tar czf {$component}.tar.gz {$component} && rm -rf {$component}");
+                $this->runCommand("cd {$baselineName}_ftp/codigo && tar czf {$sourceFolderToCompress}.tar.gz {$sourceFolderToCompress} && rm -rf {$sourceFolderToCompress}");
             } else {
-                $this->runCommand("cd {$baselineName}_ftp/codigo && zip -r {$component}.zip {$component} && rm -rf {$component}");
+                $this->runCommand("cd {$baselineName}_ftp/codigo && zip -r {$sourceFolderToCompress}.zip {$sourceFolderToCompress} && rm -rf {$sourceFolderToCompress}");
             }
 
 //TODO: Check if it has sucessfully compressed the directory
@@ -227,8 +259,8 @@ $this->debug(print_r($jiraVersionDescription, true));
                 . dirname(__FILE__) . '/vendor/phpseclib');
            include_once('Net/SFTP.php');
 
-            $sftp = new Net_SFTP($parameter->getFtpHost());
-            if ($sftp->login($parameter->getFtpUser(), $parameter->getFtpPassword())) {
+            $sftp = new Net_SFTP($this->parameter->getFtpHost());
+            if ($sftp->login($this->parameter->getFtpUser(), $this->parameter->getFtpPassword())) {
                 $ftpPath = trim($this->baseline->getSystem()->getFtpPath());
 
                 if (isset($ftpPath[0]) && $ftpPath[0] != '/') {
@@ -251,15 +283,13 @@ $this->debug(print_r($jiraVersionDescription, true));
         ############################################################################
         // Release the Jira's baseline (version)
         $this->log('Fechando a baseline no Jira.');
-        $jiraClient->releaseVersion($version);
+        $this->jiraClient->releaseVersion($version);
 
-        #$result[$baselineType]["Release the Jira's version"] = true;
         $result["Release the Jira's version"] = true;
 
         ############################################################################
         // Update the source on the "testing" server
         $this->log('TODO: Atualizando os fontes no servidor.');
-        #$result[$baselineType]["Update source in the server"] = true;
 #        $result["Update source in the server"] = true;
 
         ############################################################################
@@ -284,14 +314,13 @@ $this->debug(print_r($jiraVersionDescription, true));
 
         $html = get_partial("baseline/email{$baselineType}", array(
             'baseline'    => $this->baseline,
-            'parameter'   => $parameter,
-            'description' => substr($jiraVersionDescription, 0, strpos($jiraVersionDescription, '.')),
-            'content'     => substr($jiraVersionDescription, strpos($jiraVersionDescription, '.')+1)
+            'parameter'   => $this->parameter,
+            'description' => substr($issuesData['baselineSummary'], 0, strpos($issuesData['baselineSummary'], '.')),
+            'content'     => substr($issuesData['baselineSummary'], strpos($issuesData['baselineSummary'], '.')+1)
         ));
 
         $message->setBody($html, 'text/html');
 
-        #$result[$baselineType]["Send baseline's e-mail"] = $mailer->send($message);
         $result["Send baseline's e-mail"] = $mailer->send($message);
 
         ############################################################################
@@ -306,10 +335,10 @@ $this->debug(print_r($jiraVersionDescription, true));
 
             $html = get_partial("baseline/emailAvailability", array(
                 'baseline'    => $this->baseline,
-                'parameter'   => $parameter,
-                'description' => substr($jiraVersionDescription, 0, strpos($jiraVersionDescription, '.')),
-                'content'     => substr($jiraVersionDescription, strpos($jiraVersionDescription, '.')+1),
-                'issues'      => $issuesForReleaseSummary
+                'parameter'   => $this->parameter,
+                'description' => substr($issuesData['baselineSummary'], 0, strpos($issuesData['baselineSummary'], '.')),
+                'content'     => substr($issuesData['baselineSummary'], strpos($issuesData['baselineSummary'], '.')+1),
+                'issues'      => $issuesData['releaseSummary']
             ));
 
             $message->setBody($html, 'text/html');
@@ -333,17 +362,16 @@ $this->debug(print_r($jiraVersionDescription, true));
         }
 
         ############################################################################
-$cmd = "echo \"\nJira Version Description:\n{$jiraVersionDescription}\n\"";
+$cmd = "echo \"\nJira Version Description:\n{$issuesData['baselineSummary']}\n\"";
 $this->runCommand($cmd);
 $this->debug(print_r($result, true));
         return $result;
     }
 
     /**
-     * @param Baseline $baseline
      * @return array
      */
-    private function getIssues(Baseline $baseline) {
+    private function getIssues() {
         $populate = function(&$issues, $unhandledIssues) {
             $unhandledIssues = explode(',', $unhandledIssues);
 
@@ -359,7 +387,7 @@ $this->debug(print_r($result, true));
 
         $issues = array();
 
-        if ($baseline->getIssues()) {
+        if ($this->baseline->getIssues()) {
             $populate($issues, $baseline->getIssues());
         }
 
@@ -383,6 +411,38 @@ $this->debug(print_r($result, true));
             $this->debug(print_r(array($commands => $output), true));
             echo "$output\n";
         }
+    }
+
+    /**
+     * @return array
+     */
+    private function getIssuesData() {
+        $issues = trim($this->baseline->getIssues());
+
+        $data = array(
+            'issues' => null,
+            'baselineSummary' => null,
+            'releaseSummary' => null
+        );
+
+        $issuesTypes = $this->jiraClient->getIssuesTypesForProject();
+
+        if ($issues) {
+            $data['issues'] = $this->jiraClient->getIssues($this->getIssues());
+        } else {
+            $data['issues'] = $this->jiraClient->getIssuesByFixVersion(
+                $this->baseline->getFixVersion());
+        }
+
+        $data['baselineSummary'] = $this->getJiraVersionDescription(
+            $data['issues'], $issuesTypes);
+
+        if ($this->baseline->isReleaseBaseline()) {
+            $data['releaseSummary'] = $this->getReleaseSummary(
+                $data['issues'], $issuesTypes);
+        }
+
+        return $data;
     }
 
     /**
@@ -458,6 +518,143 @@ $this->debug(print_r($result, true));
             }
 
             return $issues;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array $issuesObjects
+     * @param array $issuesTypes
+     * @return string
+     */
+    public function getJiraVersionDescription($issuesObjects, $issuesTypes) {
+        if (is_array($issuesObjects)) {
+            $description = '';
+
+            $issues = array(
+                'bugs' => array(
+                    'id' => null,
+                    'issues' => array()
+                ),
+                'crs' => array(
+                    'id' => null,
+                    'issues' => array()
+                ),
+                'improvements' => array(
+                    'id' => null,
+                    'issues' => array()
+                ),
+                'demands' => array(
+                    'id' => null,
+                    'issues' => array()
+                )
+            );
+
+            foreach ($issuesTypes as $key => $issueType) {
+                if (strcasecmp($issueType->name, JiraAPISoapClient::ISSUE_TYPE_NAME_BUG) == 0) {
+                    $issues['bugs']['id'] = $issueType->id;
+                }
+                if (strcasecmp($issueType->name, JiraAPISoapClient::ISSUE_TYPE_NAME_CR) == 0) {
+                    $issues['crs']['id'] = $issueType->id;
+                }
+                if (strcasecmp($issueType->name, JiraAPISoapClient::ISSUE_TYPE_NAME_IMPROVEMENT) == 0) {
+                    $issues['improvements']['id'] = $issueType->id;
+                }
+                if (strcasecmp($issueType->name, JiraAPISoapClient::ISSUE_TYPE_NAME_DEMAND) == 0) {
+                    $issues['demands']['id'] = $issueType->id;
+                }
+            }
+
+            foreach ($issuesObjects as $key => $issue) {
+                switch ($issue->type) {
+                    case $issues['bugs']['id']: {
+                        array_push($issues['bugs']['issues'], $issue->key);
+                        break;
+                    }
+                    case $issues['crs']['id']: {
+                        array_push($issues['crs']['issues'], $issue->key);
+                        break;
+                    }
+                    case $issues['improvements']['id']: {
+                        array_push($issues['improvements']['issues'], $issue->key);
+                        break;
+                    }
+                    case $issues['demands']['id']: {
+                        array_push($issues['demands']['issues'], $issue->key);
+                        break;
+                    }
+                }
+            }
+
+            if (strcasecmp($this->baseline->getType(), Baseline::TYPE_RELEASE) == 0) {
+                $description = 'Baseline de release da ';
+            }
+            if (strcasecmp($this->baseline->getType(), Baseline::TYPE_TEST) == 0) {
+                $description = 'Baseline de teste da ';
+            }
+
+
+            $getDescription = function(&$arr, $data, $singularPrefix, $pluralPrefix) {
+                $count = is_array($data)?count($data):0;
+                if ($count) {
+                    if ($count > 1) {
+                        $s = $pluralPrefix . ' ';
+
+                        $last = array_pop($data);
+
+                        $s .= implode(', ', $data);
+                        $s .= ' e ' . $last;
+                    } else {
+                        $s = $singularPrefix . ' ';
+                        $s .= reset($data);
+                    }
+
+                    $arr []= $s;
+                }
+            };
+
+
+            $descriptionAux = array();
+
+            $getDescription($descriptionAux, $issues['bugs']['issues'],
+                'correção do bug', 'correção dos bugs');
+
+            $getDescription($descriptionAux, $issues['crs']['issues'],
+                'implementação da CR', 'implementação das CRs');
+
+            $getDescription($descriptionAux, $issues['improvements']['issues'],
+                'implementação da melhoria', 'implementação das melhorias');
+
+            $getDescription($descriptionAux, $issues['demands']['issues'],
+                'implementação da demanda', 'implementação das demandas');
+
+
+            $count = is_array($descriptionAux)?count($descriptionAux):0;
+            if ($count) {
+                if ($count > 1) {
+                    $last = array_pop($descriptionAux);
+
+                    $s = implode(', ', $descriptionAux);
+                    $s .= ' e ' . $last;
+                } else {
+                    $s = reset($descriptionAux);
+                }
+
+                $description .= $s;
+            }
+
+
+
+            if (strcasecmp($this->baseline->getType(), Baseline::TYPE_RELEASE) == 0) {
+                $description .= '. Conteúdo: código-fonte e release notes.';
+            }
+            if (strcasecmp($this->baseline->getType(), Baseline::TYPE_TEST) == 0) {
+//TODO: Check it really has ETFs to include.
+                $description .= '. Conteúdo: código-fonte e ETFs.';
+            }
+
+            return $description;
         }
 
         return null;
