@@ -23,11 +23,10 @@ abstract class BaseBaselineForm extends BaseFormDoctrine
       'sendMail'             => new sfWidgetFormInputCheckbox(),
       'sendAvailabilityMail' => new sfWidgetFormInputCheckbox(),
       'issues'               => new sfWidgetFormTextarea(),
+      'fixVersion'           => new sfWidgetFormInputText(),
       'generatedAt'          => new sfWidgetFormDate(),
       'created_at'           => new sfWidgetFormDateTime(),
       'updated_at'           => new sfWidgetFormDateTime(),
-      'created_by'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CreatedBy'), 'add_empty' => true)),
-      'updated_by'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UpdatedBy'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -39,11 +38,10 @@ abstract class BaseBaselineForm extends BaseFormDoctrine
       'sendMail'             => new sfValidatorBoolean(array('required' => false)),
       'sendAvailabilityMail' => new sfValidatorBoolean(array('required' => false)),
       'issues'               => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'fixVersion'           => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'generatedAt'          => new sfValidatorDate(array('required' => false)),
       'created_at'           => new sfValidatorDateTime(),
       'updated_at'           => new sfValidatorDateTime(),
-      'created_by'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CreatedBy'), 'required' => false)),
-      'updated_by'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UpdatedBy'), 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('baseline[%s]');

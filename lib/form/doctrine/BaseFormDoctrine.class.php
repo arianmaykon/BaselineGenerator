@@ -12,6 +12,9 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 {
   public function setup()
   {
-  	
+        $this->offsetUnset('created_at');
+        $this->offsetUnset('updated_at');
+        $this->offsetUnset('created_by');
+        $this->offsetUnset('updated_by');  	
   }
 }
