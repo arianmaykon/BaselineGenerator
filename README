@@ -1,18 +1,18 @@
 Just a simple app to help configuration management tasks, for now, baseline generation, with test and release baselines already been generated. Sorry for the stupid name :)
 
 
-BaselineGenerator
+#BaselineGenerator
 ================================================================================
 
-Português
+##Português
 
 (Trabalho em andamento...)
 
 Como usar/rodar (Linux/Ubuntu)
 
 - Clone o repositório para a pasta htdocs/www do seu Apache HTTP Server executando os comandos abaixo no terminal:
-	cd /var/www/
-	git clone https://github.com/arianmaykon/BaselineGenerator.git
+	`cd /var/www/
+	git clone https://github.com/arianmaykon/BaselineGenerator.git`
 - Depois execute:
 	cd BaselineGenerator
 	./symfony project:permissions
@@ -85,7 +85,7 @@ O processo de geração irá se comportar conforme abaixo:
 
 --------------------------------------------------------------------------------
 
-English
+##English
 
 (Work in progress...)
 
