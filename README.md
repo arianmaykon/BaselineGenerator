@@ -11,8 +11,10 @@ Just a simple app to help configuration management tasks, for now, baseline gene
 Como usar/rodar (Linux/Ubuntu)
 
 - Clone o repositório para a pasta htdocs/www do seu Apache HTTP Server executando os comandos abaixo no terminal:
-	`cd /var/www/
-	git clone https://github.com/arianmaykon/BaselineGenerator.git`
+	```shell
+	cd /var/www/
+	git clone https://github.com/arianmaykon/BaselineGenerator.git
+	```
 - Depois execute:
 	cd BaselineGenerator
 	./symfony project:permissions
