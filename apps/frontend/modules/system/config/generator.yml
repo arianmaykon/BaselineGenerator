@@ -1,0 +1,24 @@
+#Reference: http://www.symfony-project.org/jobeet/1_4/Doctrine/en/12
+#http://www.symfony-project.org/reference/1_4/en/06-Admin-Generator
+#http://www.symfony-project.org/gentle-introduction/1_4/en/14-Admin-Generator
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           System
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          system
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
