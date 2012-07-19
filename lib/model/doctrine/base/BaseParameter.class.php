@@ -79,18 +79,12 @@ abstract class BaseParameter extends sfDoctrineRecord
         $this->hasColumn('availabilityMailBody', 'string', null, array(
              'type' => 'string',
              ));
-
-        $this->option('symfony', array(
-             'filter' => false,
-             ));
     }
 
     public function setUp()
     {
         parent::setUp();
         $timestampable0 = new Doctrine_Template_Timestampable();
-        $fzblameable0 = new Doctrine_Template_fzBlameable();
         $this->actAs($timestampable0);
-        $this->actAs($fzblameable0);
     }
 }

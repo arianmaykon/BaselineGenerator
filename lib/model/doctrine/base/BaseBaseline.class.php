@@ -12,6 +12,7 @@
  * @property boolean $sendMail
  * @property boolean $sendAvailabilityMail
  * @property string $issues
+ * @property string $fixVersion
  * @property date $generatedAt
  * @property System $System
  * 
@@ -22,6 +23,7 @@
  * @method boolean  getSendMail()             Returns the current record's "sendMail" value
  * @method boolean  getSendAvailabilityMail() Returns the current record's "sendAvailabilityMail" value
  * @method string   getIssues()               Returns the current record's "issues" value
+ * @method string   getFixVersion()           Returns the current record's "fixVersion" value
  * @method date     getGeneratedAt()          Returns the current record's "generatedAt" value
  * @method System   getSystem()               Returns the current record's "System" value
  * @method Baseline setFkSystem()             Sets the current record's "fk_system" value
@@ -31,6 +33,7 @@
  * @method Baseline setSendMail()             Sets the current record's "sendMail" value
  * @method Baseline setSendAvailabilityMail() Sets the current record's "sendAvailabilityMail" value
  * @method Baseline setIssues()               Sets the current record's "issues" value
+ * @method Baseline setFixVersion()           Sets the current record's "fixVersion" value
  * @method Baseline setGeneratedAt()          Sets the current record's "generatedAt" value
  * @method Baseline setSystem()               Sets the current record's "System" value
  * 
@@ -80,12 +83,12 @@ abstract class BaseBaseline extends sfDoctrineRecord
              'type' => 'string',
              'length' => 500,
              ));
+        $this->hasColumn('fixVersion', 'string', 150, array(
+             'type' => 'string',
+             'length' => 150,
+             ));
         $this->hasColumn('generatedAt', 'date', null, array(
              'type' => 'date',
-             ));
-
-        $this->option('symfony', array(
-             'filter' => false,
              ));
     }
 
@@ -97,8 +100,6 @@ abstract class BaseBaseline extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
-        $fzblameable0 = new Doctrine_Template_fzBlameable();
         $this->actAs($timestampable0);
-        $this->actAs($fzblameable0);
     }
 }

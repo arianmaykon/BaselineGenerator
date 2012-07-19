@@ -94,10 +94,6 @@ abstract class BaseSystem extends sfDoctrineRecord
               1 => 'tar.gz',
              ),
              ));
-
-        $this->option('symfony', array(
-             'filter' => false,
-             ));
     }
 
     public function setUp()
@@ -108,8 +104,6 @@ abstract class BaseSystem extends sfDoctrineRecord
              'foreign' => 'fk_system'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
-        $fzblameable0 = new Doctrine_Template_fzBlameable();
         $this->actAs($timestampable0);
-        $this->actAs($fzblameable0);
     }
 }
