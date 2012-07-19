@@ -1,3 +1,30 @@
+parameter:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Parameter
+    module:               parameter
+    prefix_path:          /parameter
+    column:               id
+    with_wildcard_routes: true
+
+baseline:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Baseline
+    module:               baseline
+    prefix_path:          /baseline
+    column:               id
+    with_wildcard_routes: true
+
+system:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                System
+    module:               system
+    prefix_path:          /system
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
