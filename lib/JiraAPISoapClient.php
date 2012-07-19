@@ -143,7 +143,6 @@ class JiraAPISoapClient {
 		#$remoteVersion->releaseDate;
 
 		$result = $this->getClient()->addVersion($this->_token, $this->_projectKey, $remoteVersion);
-#var_dump($result);
 	}
 
 	/**
@@ -159,8 +158,6 @@ class JiraAPISoapClient {
 	 * @return array
 	 */
 	public function getIssuesByFixVersion($fixVersion) {
-#		return $this->getClient()->getIssuesFromJqlSearch($this->_token,
-#			'fixVersion = ' . $fixVersion, 100);
 		return $this->getIssuesFromJqlSearch('fixVersion = ' . $fixVersion
 			. ' ORDER BY issuetype');
 	}
@@ -174,8 +171,6 @@ class JiraAPISoapClient {
 			$issues = implode(',', $issues);
 		}
 
-#		return $this->getClient()->getIssuesFromJqlSearch($this->_token,
-#			'issuekey in (' . $issues . ')', 100);
 		return $this->getIssuesFromJqlSearch('issuekey in (' . $issues
 			. ') ORDER BY issuetype');
 	}
